@@ -79,8 +79,6 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _hireFormsUtils = require("hire-forms-utils");
 
-var _hireFormsUtils2 = _interopRequireDefault(_hireFormsUtils);
-
 var _hireFormsPropTypes = require("hire-forms-prop-types");
 
 var MultiForm = (function (_React$Component) {
@@ -107,7 +105,7 @@ var MultiForm = (function (_React$Component) {
    * @method
    */
 		value: function handleAddForm() {
-			var attr = (0, _hireFormsUtils2["default"])(this.props.attr);
+			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 			var index = this.props.value.size;
 			var key = attr.concat(index);
 
@@ -116,7 +114,7 @@ var MultiForm = (function (_React$Component) {
 	}, {
 		key: "handleRemoveForm",
 		value: function handleRemoveForm(index) {
-			var attr = (0, _hireFormsUtils2["default"])(this.props.attr);
+			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 			var key = attr.concat(index);
 
 			this.props.onDelete(key);
@@ -141,7 +139,7 @@ var MultiForm = (function (_React$Component) {
 		value: function render() {
 			var _this = this;
 
-			var attr = (0, _hireFormsUtils2["default"])(this.props.attr);
+			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 
 			var views = this.props.value.map(function (listItem, index) {
 				return _react2["default"].createElement(

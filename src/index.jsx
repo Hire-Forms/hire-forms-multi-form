@@ -6,7 +6,7 @@ import React from "react";
 import Immutable from "immutable";
 import cx from "classnames";
 
-import alwaysArray from "hire-forms-utils";
+import {castArray} from "hire-forms-utils";
 
 import {stringOrArrayOfString} from "hire-forms-prop-types";
 
@@ -21,7 +21,7 @@ class MultiForm extends React.Component {
 	 * @method
 	 */
 	handleAddForm() {
-		let attr = alwaysArray(this.props.attr);
+		let attr = castArray(this.props.attr);
 		let index = this.props.value.size;
 		let key = attr.concat(index);
 
@@ -29,7 +29,7 @@ class MultiForm extends React.Component {
 	}
 
 	handleRemoveForm(index) {
-		let attr = alwaysArray(this.props.attr);
+		let attr = castArray(this.props.attr);
 		let key = attr.concat(index);
 
 		this.props.onDelete(key);
@@ -48,7 +48,7 @@ class MultiForm extends React.Component {
 	}
 
 	render() {
-		let attr = alwaysArray(this.props.attr);
+		let attr = castArray(this.props.attr);
 
 		let views = this.props.value.map((listItem, index) => {
 			return (
