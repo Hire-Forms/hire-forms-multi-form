@@ -140,7 +140,7 @@ var MultiForm = (function (_React$Component) {
 
 			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 
-			var forms = this.props.values.map(function (listItem, index) {
+			var renderedFormComponents = this.props.values.map(function (listItem, index) {
 				return _react2["default"].createElement(
 					"li",
 					{ key: index },
@@ -161,14 +161,16 @@ var MultiForm = (function (_React$Component) {
 				);
 			});
 
+			var formList = renderedFormComponents.length ? _react2["default"].createElement(
+				"ul",
+				null,
+				renderedFormComponents
+			) : null;
+
 			return _react2["default"].createElement(
 				"div",
 				{ className: "hire-multi-form" },
-				_react2["default"].createElement(
-					"ul",
-					null,
-					forms
-				),
+				formList,
 				_react2["default"].createElement(
 					"button",
 					{

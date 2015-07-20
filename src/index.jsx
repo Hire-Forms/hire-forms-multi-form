@@ -49,7 +49,7 @@ class MultiForm extends React.Component {
 	render() {
 		let attr = castArray(this.props.attr);
 
-		let forms = this.props.values.map((listItem, index) => {
+		let renderedFormComponents = this.props.values.map((listItem, index) => {
 			return (
 				<li key={index}>
 					<this.props.component
@@ -68,9 +68,13 @@ class MultiForm extends React.Component {
 				);
 		});
 
+		let formList = renderedFormComponents.length ?
+			<ul>{renderedFormComponents}</ul> :
+			null;
+
 		return (
 			<div className="hire-multi-form">
-				<ul>{forms}</ul>
+				{formList}
 				<button
 					className={cx(
 						"hire-add-form",
