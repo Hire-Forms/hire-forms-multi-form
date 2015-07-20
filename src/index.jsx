@@ -68,7 +68,7 @@ class MultiForm extends React.Component {
 				);
 		});
 
-		let formList = renderedFormComponents.length ?
+		let formList = renderedFormComponents.size ?
 			<ul>{renderedFormComponents}</ul> :
 			null;
 

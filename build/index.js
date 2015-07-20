@@ -161,7 +161,7 @@ var MultiForm = (function (_React$Component) {
 				);
 			});
 
-			var formList = renderedFormComponents.length ? _react2["default"].createElement(
+			var formList = renderedFormComponents.size ? _react2["default"].createElement(
 				"ul",
 				null,
 				renderedFormComponents
