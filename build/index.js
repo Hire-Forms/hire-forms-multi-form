@@ -47,7 +47,6 @@ var arrayOfStringOrArrayOfKeyValue = _react2["default"].PropTypes.oneOfType([_re
 exports.arrayOfStringOrArrayOfKeyValue = arrayOfStringOrArrayOfKeyValue;
 
 },{"react":"react"}],2:[function(require,module,exports){
-//TODO rename this.props.view to this.props.component
 //TODO fix propType for this.props.view
 //TODO rename this.props.value to this.props.values
 
@@ -106,7 +105,7 @@ var MultiForm = (function (_React$Component) {
    */
 		value: function handleAddForm() {
 			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
-			var index = this.props.value.size;
+			var index = this.props.values.size;
 			var key = attr.concat(index);
 
 			this.props.onChange(key, new _immutable2["default"].Map());
@@ -141,11 +140,11 @@ var MultiForm = (function (_React$Component) {
 
 			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 
-			var views = this.props.value.map(function (listItem, index) {
+			var forms = this.props.values.map(function (listItem, index) {
 				return _react2["default"].createElement(
 					"li",
 					{ key: index },
-					_react2["default"].createElement(_this.props.view, {
+					_react2["default"].createElement(_this.props.component, {
 						attr: attr.concat(index),
 						onChange: _this.handleChange.bind(_this),
 						onDelete: _this.handleDelete.bind(_this),
@@ -168,7 +167,7 @@ var MultiForm = (function (_React$Component) {
 				_react2["default"].createElement(
 					"ul",
 					null,
-					views
+					forms
 				),
 				_react2["default"].createElement(
 					"button",
@@ -195,8 +194,8 @@ MultiForm.propTypes = {
 	onChange: _react2["default"].PropTypes.func,
 	onDelete: _react2["default"].PropTypes.func,
 	onInvalid: _react2["default"].PropTypes.func,
-	value: _react2["default"].PropTypes.instanceOf(_immutable2["default"].List),
-	view: _react2["default"].PropTypes.func
+	values: _react2["default"].PropTypes.instanceOf(_immutable2["default"].List),
+	component: _react2["default"].PropTypes.func
 };
 
 exports["default"] = MultiForm;

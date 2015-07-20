@@ -1,4 +1,3 @@
-//TODO rename this.props.view to this.props.component
 //TODO fix propType for this.props.view
 //TODO rename this.props.value to this.props.values
 
@@ -22,7 +21,7 @@ class MultiForm extends React.Component {
 	 */
 	handleAddForm() {
 		let attr = castArray(this.props.attr);
-		let index = this.props.value.size;
+		let index = this.props.values.size;
 		let key = attr.concat(index);
 
 		this.props.onChange(key, new Immutable.Map());
@@ -50,10 +49,10 @@ class MultiForm extends React.Component {
 	render() {
 		let attr = castArray(this.props.attr);
 
-		let views = this.props.value.map((listItem, index) => {
+		let forms = this.props.values.map((listItem, index) => {
 			return (
 				<li key={index}>
-					<this.props.view
+					<this.props.component
 						attr={attr.concat(index)}
 						onChange={this.handleChange.bind(this)}
 						onDelete={this.handleDelete.bind(this)}
@@ -71,7 +70,7 @@ class MultiForm extends React.Component {
 
 		return (
 			<div className="hire-multi-form">
-				<ul>{views}</ul>
+				<ul>{forms}</ul>
 				<button
 					className={cx(
 						"hire-add-form",
@@ -96,8 +95,8 @@ MultiForm.propTypes = {
 	onChange: React.PropTypes.func,
 	onDelete: React.PropTypes.func,
 	onInvalid: React.PropTypes.func,
-	value: React.PropTypes.instanceOf(Immutable.List),
-	view: React.PropTypes.func
+	values: React.PropTypes.instanceOf(Immutable.List),
+	component: React.PropTypes.func
 };
 
 export default MultiForm;
