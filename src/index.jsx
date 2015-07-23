@@ -1,6 +1,3 @@
-//TODO fix propType for this.props.view
-//TODO rename this.props.value to this.props.values
-
 import React from "react";
 import Immutable from "immutable";
 import cx from "classnames";
@@ -9,6 +6,8 @@ import {castArray} from "hire-forms-utils";
 
 import {stringOrArrayOfString} from "hire-forms-prop-types";
 
+//TODO fix propType for this.props.view
+//TODO rename this.props.value to this.props.values
 class MultiForm extends React.Component {
 	/**
 	 * Add a form.
