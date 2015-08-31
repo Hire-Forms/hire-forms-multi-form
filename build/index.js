@@ -47,22 +47,25 @@ var arrayOfStringOrArrayOfKeyValue = _react2["default"].PropTypes.oneOfType([_re
 exports.arrayOfStringOrArrayOfKeyValue = arrayOfStringOrArrayOfKeyValue;
 
 },{"react":"react"}],2:[function(require,module,exports){
-//TODO fix propType for this.props.view
-//TODO rename this.props.value to this.props.values
-
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require("react");
 
@@ -72,43 +75,46 @@ var _immutable = require("immutable");
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
-var _classnames = require("classnames");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
 var _hireFormsUtils = require("hire-forms-utils");
 
 var _hireFormsPropTypes = require("hire-forms-prop-types");
 
+//TODO fix propType for this.props.component
+
 var MultiForm = (function (_React$Component) {
-	function MultiForm() {
-		_classCallCheck(this, MultiForm);
-
-		if (_React$Component != null) {
-			_React$Component.apply(this, arguments);
-		}
-	}
-
 	_inherits(MultiForm, _React$Component);
 
-	_createClass(MultiForm, [{
-		key: "handleAddForm",
+	function MultiForm(props) {
+		_classCallCheck(this, MultiForm);
 
-		/**
-   * Add a form.
-   *
-   * The key is the Immutable.List size (equal to highest index + 1).
-   * The value is an Immutable.Map. The form will extend/merge the map
-   * with default values.
-   *
-   * @method
-   */
-		value: function handleAddForm() {
+		_get(Object.getPrototypeOf(MultiForm.prototype), "constructor", this).call(this, props);
+
+		this.state = {
+			formValue: props.model
+		};
+	}
+
+	_createClass(MultiForm, [{
+		key: "handleSave",
+		value: function handleSave() {
 			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
-			var index = this.props.values.size;
+			var index = this.props.values.length;
 			var key = attr.concat(index);
 
-			this.props.onChange(key, new _immutable2["default"].Map());
+			this.props.onChange(key, this.state.formValue);
+
+			this.setState({
+				formValue: this.props.model
+			});
+		}
+	}, {
+		key: "handleNewChange",
+		value: function handleNewChange(key, value) {
+			var nextFormValue = _extends({}, this.state.formValue, _defineProperty({}, key, value));
+
+			this.setState(_extends({}, this.state, {
+				formValue: nextFormValue
+			}));
 		}
 	}, {
 		key: "handleRemoveForm",
@@ -131,7 +137,9 @@ var MultiForm = (function (_React$Component) {
 	}, {
 		key: "handleInvalid",
 		value: function handleInvalid(key) {
-			this.props.onInvalid(key);
+			if (this.props.onInvalid != null) {
+				this.props.onInvalid(key);
+			}
 		}
 	}, {
 		key: "render",
@@ -140,45 +148,46 @@ var MultiForm = (function (_React$Component) {
 
 			var attr = (0, _hireFormsUtils.castArray)(this.props.attr);
 
-			var renderedFormComponents = this.props.values.map(function (listItem, index) {
-				return _react2["default"].createElement(
-					"li",
-					{ key: index },
-					_react2["default"].createElement(_this.props.component, {
-						attr: attr.concat(index),
-						onChange: _this.handleChange.bind(_this),
-						onDelete: _this.handleDelete.bind(_this),
-						onInvalid: _this.handleInvalid.bind(_this),
-						value: listItem }),
-					_react2["default"].createElement(
-						"button",
-						{
-							className: "hire-remove-form",
-							onClick: _this.handleRemoveForm.bind(_this, index),
-							title: "Remove" },
-						"-"
-					)
-				);
-			});
-
-			var formList = renderedFormComponents.size ? _react2["default"].createElement(
+			var formList = this.props.values.length ? _react2["default"].createElement(
 				"ul",
 				null,
-				renderedFormComponents
+				this.props.values.map(function (listItem, index) {
+					return _react2["default"].createElement(
+						"li",
+						{ key: index },
+						_react2["default"].createElement(_this.props.component, {
+							attr: attr.concat(index),
+							onChange: _this.handleChange.bind(_this),
+							onDelete: _this.handleDelete.bind(_this),
+							onInvalid: _this.handleInvalid.bind(_this),
+							value: listItem }),
+						_react2["default"].createElement(
+							"button",
+							{
+								className: "hire-remove-form",
+								onClick: _this.handleRemoveForm.bind(_this, index),
+								title: "Remove" },
+							"✕"
+						)
+					);
+				})
 			) : null;
 
 			return _react2["default"].createElement(
 				"div",
 				{ className: "hire-multi-form" },
-				formList,
+				_react2["default"].createElement(this.props.component, {
+					onChange: this.handleNewChange.bind(this),
+					value: this.state.formValue }),
 				_react2["default"].createElement(
 					"button",
 					{
-						className: (0, _classnames2["default"])("hire-add-form", { first: this.props.value.size === 0 }),
-						onClick: this.handleAddForm.bind(this),
+						className: "add",
+						onClick: this.handleSave.bind(this),
 						title: "Add" },
-					"+"
-				)
+					"Add"
+				),
+				formList
 			);
 		}
 	}]);
@@ -190,20 +199,19 @@ MultiForm.defaultProps = {
 	value: new _immutable2["default"].List()
 };
 
-// view: React.PropTypes.element.isRequired
 MultiForm.propTypes = {
 	attr: _hireFormsPropTypes.stringOrArrayOfString,
+	component: _react2["default"].PropTypes.func,
 	onChange: _react2["default"].PropTypes.func,
 	onDelete: _react2["default"].PropTypes.func,
 	onInvalid: _react2["default"].PropTypes.func,
-	values: _react2["default"].PropTypes.instanceOf(_immutable2["default"].List),
-	component: _react2["default"].PropTypes.func
+	values: _react2["default"].PropTypes.array
 };
 
 exports["default"] = MultiForm;
 module.exports = exports["default"];
 
-},{"classnames":"classnames","hire-forms-prop-types":1,"hire-forms-utils":3,"immutable":"immutable","react":"react"}],3:[function(require,module,exports){
+},{"hire-forms-prop-types":1,"hire-forms-utils":3,"immutable":"immutable","react":"react"}],3:[function(require,module,exports){
 
 /*
  * @param {Array} list
@@ -212,21 +220,22 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.isListOfStrings = isListOfStrings;
 exports.isKeyValueMap = isKeyValueMap;
 exports.castArray = castArray;
+exports.castKeyValue = castKeyValue;
 exports.castKeyValueArray = castKeyValueArray;
 
 function isListOfStrings(list) {
-	if (!Array.isArray(list) || !list.length) {
-		return false;
-	}
+  if (!Array.isArray(list) || !list.length) {
+    return false;
+  }
 
-	return list.every(function (item) {
-		return typeof item === "string";
-	});
+  return list.every(function (item) {
+    return typeof item === "string";
+  });
 }
 
 /*
@@ -235,11 +244,11 @@ function isListOfStrings(list) {
  */
 
 function isKeyValueMap(map) {
-	if (map == null) {
-		return false;
-	}
+  if (map == null) {
+    return false;
+  }
 
-	return map.hasOwnProperty("key") && map.hasOwnProperty("value");
+  return map.hasOwnProperty("key") && map.hasOwnProperty("value");
 }
 
 /*
@@ -250,27 +259,36 @@ function isKeyValueMap(map) {
  */
 
 function castArray(arr) {
-	return Array.isArray(arr) ? arr : [arr];
+  return Array.isArray(arr) ? arr : [arr];
 }
 
 ;
 
 /*
+ * Always return a key/value map.
+ *
+ * @param {Number|String|Boolean|Object} item
+ * @returns {Array} Array of key value maps, ie: [{key: "A", value: "A"}, {key: "B", value: "B"}, ...]
+ */
+
+function castKeyValue(item) {
+  return isKeyValueMap(item) ? item : {
+    key: item,
+    value: item
+  };
+}
+
+/*
  * Always return an array of key/value maps.
  *
- * @param {Number|String|Boolean|Array} list
+ * @param {Number|String|Boolean|Array|Object} list
  * @returns {Array} Array of key value maps, ie: [{key: "A", value: "A"}, {key: "B", value: "B"}, ...]
  */
 
 function castKeyValueArray(list) {
-	list = castArray(list);
+  list = castArray(list);
 
-	return list.map(function (item) {
-		return isKeyValueMap(item) ? item : {
-			key: item,
-			value: item
-		};
-	});
+  return list.map(castKeyValue);
 }
 
 },{}]},{},[2])(2)
