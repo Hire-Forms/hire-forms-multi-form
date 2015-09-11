@@ -1,3 +1,7 @@
+### v3.0.1	(2015/9/11 10:57)
+* Make model required
+* Make component required
+
 ### v3.0.0	(2015/8/31 15:35)
 * Remove Immutable dep
 * Move comments
