@@ -106,6 +106,7 @@ MultiForm.defaultProps = {
 MultiForm.propTypes = {
 	attr: stringOrArrayOfString,
 	component: React.PropTypes.func.isRequired,
+	model: React.PropTypes.object.isRequired,
 	onChange: React.PropTypes.func,
 	onDelete: React.PropTypes.func,
 	onInvalid: React.PropTypes.func,

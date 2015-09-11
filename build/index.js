@@ -198,6 +198,7 @@ MultiForm.defaultProps = {
 MultiForm.propTypes = {
 	attr: _hireFormsPropTypes.stringOrArrayOfString,
 	component: _react2["default"].PropTypes.func.isRequired,
+	model: _react2["default"].PropTypes.object.isRequired,
 	onChange: _react2["default"].PropTypes.func,
 	onDelete: _react2["default"].PropTypes.func,
 	onInvalid: _react2["default"].PropTypes.func,
