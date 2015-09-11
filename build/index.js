@@ -71,10 +71,6 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _immutable = require("immutable");
-
-var _immutable2 = _interopRequireDefault(_immutable);
-
 var _hireFormsUtils = require("hire-forms-utils");
 
 var _hireFormsPropTypes = require("hire-forms-prop-types");
@@ -196,12 +192,12 @@ var MultiForm = (function (_React$Component) {
 })(_react2["default"].Component);
 
 MultiForm.defaultProps = {
-	value: new _immutable2["default"].List()
+	values: []
 };
 
 MultiForm.propTypes = {
 	attr: _hireFormsPropTypes.stringOrArrayOfString,
-	component: _react2["default"].PropTypes.func,
+	component: _react2["default"].PropTypes.func.isRequired,
 	onChange: _react2["default"].PropTypes.func,
 	onDelete: _react2["default"].PropTypes.func,
 	onInvalid: _react2["default"].PropTypes.func,
@@ -211,7 +207,7 @@ MultiForm.propTypes = {
 exports["default"] = MultiForm;
 module.exports = exports["default"];
 
-},{"hire-forms-prop-types":1,"hire-forms-utils":3,"immutable":"immutable","react":"react"}],3:[function(require,module,exports){
+},{"hire-forms-prop-types":1,"hire-forms-utils":3,"react":"react"}],3:[function(require,module,exports){
 
 /*
  * @param {Array} list

@@ -1,5 +1,4 @@
 import React from "react";
-import Immutable from "immutable";
 
 import {castArray} from "hire-forms-utils";
 
@@ -101,12 +100,12 @@ class MultiForm extends React.Component {
 }
 
 MultiForm.defaultProps = {
-	value: new Immutable.List()
+	values: []
 };
 
 MultiForm.propTypes = {
 	attr: stringOrArrayOfString,
-	component: React.PropTypes.func,
+	component: React.PropTypes.func.isRequired,
 	onChange: React.PropTypes.func,
 	onDelete: React.PropTypes.func,
 	onInvalid: React.PropTypes.func,
