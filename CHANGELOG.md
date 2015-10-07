@@ -1,3 +1,9 @@
+### v3.1.0	(2015/10/7 18:59)
+* Split component into different components
+* Add classnames
+* Turn button values to props
+* Pass props to forms
+
 ### v3.0.1	(2015/9/11 10:57)
 * Make model required
 * Make component required
