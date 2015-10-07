@@ -151,12 +151,12 @@ var MultiForm = (function (_React$Component) {
 					return _react2["default"].createElement(
 						"li",
 						{ key: index },
-						_react2["default"].createElement(_this.props.component, {
+						_react2["default"].createElement(_this.props.component, _extends({}, _this.props, {
 							attr: attr.concat(index),
 							onChange: _this.handleChange.bind(_this),
 							onDelete: _this.handleDelete.bind(_this),
 							onInvalid: _this.handleInvalid.bind(_this),
-							value: listItem }),
+							value: listItem })),
 						_react2["default"].createElement(
 							"button",
 							{
@@ -172,9 +172,9 @@ var MultiForm = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "hire-multi-form" },
-				_react2["default"].createElement(this.props.component, {
+				_react2["default"].createElement(this.props.component, _extends({}, this.props, {
 					onChange: this.handleNewChange.bind(this),
-					value: this.state.formValue }),
+					value: this.state.formValue })),
 				_react2["default"].createElement(
 					"button",
 					{
