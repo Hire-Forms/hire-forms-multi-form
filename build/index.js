@@ -163,7 +163,7 @@ var MultiForm = (function (_React$Component) {
 								className: "hire-remove-form",
 								onClick: _this.handleRemoveForm.bind(_this, index),
 								title: "Remove" },
-							"✕"
+							_this.props.removeButtonValue
 						)
 					);
 				})
@@ -181,7 +181,7 @@ var MultiForm = (function (_React$Component) {
 						className: "add",
 						onClick: this.handleSave.bind(this),
 						title: "Add" },
-					"Add"
+					this.props.addButtonValue
 				),
 				formList
 			);
@@ -192,16 +192,20 @@ var MultiForm = (function (_React$Component) {
 })(_react2["default"].Component);
 
 MultiForm.defaultProps = {
+	addButtonValue: "Save",
+	removeButtonValue: "✕",
 	values: []
 };
 
 MultiForm.propTypes = {
+	addButtonValue: _react2["default"].PropTypes.string,
 	attr: _hireFormsPropTypes.stringOrArrayOfString,
 	component: _react2["default"].PropTypes.func.isRequired,
 	model: _react2["default"].PropTypes.object.isRequired,
 	onChange: _react2["default"].PropTypes.func,
 	onDelete: _react2["default"].PropTypes.func,
 	onInvalid: _react2["default"].PropTypes.func,
+	removeButtonValue: _react2["default"].PropTypes.string,
 	values: _react2["default"].PropTypes.array
 };
 

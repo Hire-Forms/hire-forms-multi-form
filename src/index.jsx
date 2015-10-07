@@ -77,7 +77,7 @@ class MultiForm extends React.Component {
 							className="hire-remove-form"
 							onClick={this.handleRemoveForm.bind(this, index)}
 							title="Remove">
-							✕
+							{this.props.removeButtonValue}
 						</button>
 					</li>)
 			}</ul> :
@@ -93,7 +93,7 @@ class MultiForm extends React.Component {
 					className="add"
 					onClick={this.handleSave.bind(this)}
 					title="Add">
-					Add
+					{this.props.addButtonValue}
 				</button>
 				{formList}
 			</div>
@@ -102,16 +102,20 @@ class MultiForm extends React.Component {
 }
 
 MultiForm.defaultProps = {
+	addButtonValue: "Save",
+	removeButtonValue: "✕",
 	values: []
 };
 
 MultiForm.propTypes = {
+	addButtonValue: React.PropTypes.string,
 	attr: stringOrArrayOfString,
 	component: React.PropTypes.func.isRequired,
 	model: React.PropTypes.object.isRequired,
 	onChange: React.PropTypes.func,
 	onDelete: React.PropTypes.func,
 	onInvalid: React.PropTypes.func,
+	removeButtonValue: React.PropTypes.string,
 	values: React.PropTypes.array
 };
 
