@@ -27,12 +27,14 @@
     "babel-eslint": "^4.1.0",
     "babel-plugin-object-assign": "^1.1.0",
     "babelify": "^6.3.0",
+    "derequire": "^2.0.2",
     "eslint": "^0.23.0",
     "eslint-plugin-react": "^2.5.2",
     "hi-bump": "^1.1.1",
     "watchify": "^3.2.2"
   },
   "dependencies": {
+    "classnames": "^2.1.5",
     "hire-forms-prop-types": "^1.0.1",
     "hire-forms-utils": "^1.0.1",
     "lodash.get": "^3.7.0"

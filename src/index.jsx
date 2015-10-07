@@ -4,52 +4,15 @@ import {castArray} from "hire-forms-utils";
 
 import {stringOrArrayOfString} from "hire-forms-prop-types";
 
+import AddForm from "./add-form";
+import RemoveButton from "./remove-button";
+
 //TODO fix propType for this.props.component
 class MultiForm extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			formValue: props.model
-		};
-	}
-
-	handleSave() {
-		let attr = castArray(this.props.attr);
-		let index = this.props.values.length;
-		let key = attr.concat(index);
-
-		this.props.onChange(key, this.state.formValue);
-
-		this.setState({
-			formValue: this.props.model
-		});
-	}
-
-	handleNewChange(key, value) {
-		let nextFormValue = {...this.state.formValue, ...{
-			[key]: value
-		}};
-
-		this.setState({
-			...this.state, ...{
-				formValue: nextFormValue
-			}
-		});
-	}
-
 	handleRemoveForm(index) {
 		let attr = castArray(this.props.attr);
 		let key = attr.concat(index);
 
-		this.props.onDelete(key);
-	}
-
-	handleChange(key, value) {
-		this.props.onChange(key, value);
-	}
-
-	handleDelete(key) {
 		this.props.onDelete(key);
 	}
 
@@ -69,33 +32,22 @@ class MultiForm extends React.Component {
 						<this.props.component
 							{...this.props}
 							attr={attr.concat(index)}
-							onChange={this.handleChange.bind(this)}
-							onDelete={this.handleDelete.bind(this)}
+							onChange={this.props.onChange}
+							onDelete={this.props.onDelete}
 							onInvalid={this.handleInvalid.bind(this)}
-							value={listItem} />
-						<button
-							className="hire-remove-form"
-							onClick={this.handleRemoveForm.bind(this, index)}
-							title="Remove">
-							{this.props.removeButtonValue}
-						</button>
+							formData={listItem} />
+						<RemoveButton
+							{...this.props}
+							attr={attr.concat(index)} />
 					</li>)
 			}</ul> :
 			null;
 
 		return (
 			<div className="hire-multi-form">
-				<this.props.component
+				<AddForm
 					{...this.props}
-					className="add-form"
-					onChange={this.handleNewChange.bind(this)}
-					value={this.state.formValue} />
-				<button
-					className="add"
-					onClick={this.handleSave.bind(this)}
-					title="Add">
-					{this.props.addButtonValue}
-				</button>
+					attr={attr.concat(this.props.values.length)}/>
 				{formList}
 			</div>
 		);
@@ -103,7 +55,7 @@ class MultiForm extends React.Component {
 }
 
 MultiForm.defaultProps = {
-	addButtonValue: "Save",
+	addButtonValue: "Add",
 	removeButtonValue: "✕",
 	values: []
 };
@@ -113,8 +65,8 @@ MultiForm.propTypes = {
 	attr: stringOrArrayOfString,
 	component: React.PropTypes.func.isRequired,
 	model: React.PropTypes.object.isRequired,
-	onChange: React.PropTypes.func,
-	onDelete: React.PropTypes.func,
+	onChange: React.PropTypes.func.isRequired,
+	onDelete: React.PropTypes.func.isRequired,
 	onInvalid: React.PropTypes.func,
 	removeButtonValue: React.PropTypes.string,
 	values: React.PropTypes.array

@@ -6,7 +6,7 @@ node_modules/.bin/watchify src/index.jsx \
 	--external classnames \
 	--external immutable \
 	--external react \
-	--outfile build/index.js \
-	--standalone HireFormsTextarea \
+	--outfile 'derequire > build/index.js' \
+	--standalone HireFormsMultiForm \
 	--transform [ babelify --plugins object-assign ] \
 	--verbose
