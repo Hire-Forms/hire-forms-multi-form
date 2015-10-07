@@ -146,11 +146,11 @@ var MultiForm = (function (_React$Component) {
 
 			var formList = this.props.values.length ? _react2["default"].createElement(
 				"ul",
-				null,
+				{ className: "form-list" },
 				this.props.values.map(function (listItem, index) {
 					return _react2["default"].createElement(
 						"li",
-						{ key: index },
+						{ className: "form", key: index },
 						_react2["default"].createElement(_this.props.component, _extends({}, _this.props, {
 							attr: attr.concat(index),
 							onChange: _this.handleChange.bind(_this),
@@ -173,6 +173,7 @@ var MultiForm = (function (_React$Component) {
 				"div",
 				{ className: "hire-multi-form" },
 				_react2["default"].createElement(this.props.component, _extends({}, this.props, {
+					className: "add-form",
 					onChange: this.handleNewChange.bind(this),
 					value: this.state.formValue })),
 				_react2["default"].createElement(

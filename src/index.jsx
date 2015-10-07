@@ -63,9 +63,9 @@ class MultiForm extends React.Component {
 		let attr = castArray(this.props.attr);
 
 		let formList = (this.props.values.length) ?
-			<ul>{
+			<ul className="form-list">{
 				this.props.values.map((listItem, index) =>
-					<li key={index}>
+					<li className="form" key={index}>
 						<this.props.component
 							{...this.props}
 							attr={attr.concat(index)}
@@ -87,6 +87,7 @@ class MultiForm extends React.Component {
 			<div className="hire-multi-form">
 				<this.props.component
 					{...this.props}
+					className="add-form"
 					onChange={this.handleNewChange.bind(this)}
 					value={this.state.formValue} />
 				<button
