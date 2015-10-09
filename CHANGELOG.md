@@ -1,3 +1,6 @@
+### v3.2.0	(2015/10/9 17:9)
+* Remove add form
+
 ### v3.1.0	(2015/10/7 18:59)
 * Split component into different components
 * Add classnames
