@@ -1,5 +1,4 @@
 import React from "react";
-import {castArray} from "hire-forms-utils";
 
 import AddButton from "./add-button";
 
@@ -46,7 +45,7 @@ class AddForm extends React.Component {
 				{...this.props}
 				addButton={addButton}
 				formData={this.state.formData}
-				onChange={this.handleChange.bind(this)}>
+				handleChange={this.handleChange.bind(this)}>
 			</this.props.component>
 		);
 	}

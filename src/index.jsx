@@ -1,11 +1,17 @@
 import React from "react";
+import cx from "classnames";
 
 import {castArray} from "hire-forms-utils";
 
 import {stringOrArrayOfString} from "hire-forms-prop-types";
 
-import AddForm from "./add-form";
 import RemoveButton from "./remove-button";
+
+// <DateAndLocalityForm
+// 	attr={"origin"}
+// 	onChange={this.props.handleChange}
+// 	onInvalid={this.props.handleInvalid}
+// 	formData={model.origin} />
 
 //TODO fix propType for this.props.component
 class MultiForm extends React.Component {
@@ -22,20 +28,30 @@ class MultiForm extends React.Component {
 		}
 	}
 
+	handleAdd() {
+		let values = castArray(this.props.model).concat(this.props.values);
+		// let key = castArray(this.props.attr).concat(this.props.values.length);
+		this.props.onChange(this.props.attr, values);
+	}
+
+
+
 	render() {
 		let attr = castArray(this.props.attr);
 
 		let formList = (this.props.values.length) ?
 			<ul className="form-list">{
 				this.props.values.map((listItem, index) =>
-					<li className="form" key={index}>
+					<li className={cx(
+						"form",
+						{"new": (listItem === this.props.model)}
+						)}
+						key={index}>
 						<this.props.component
 							{...this.props}
 							attr={attr.concat(index)}
-							onChange={this.props.onChange}
-							onDelete={this.props.onDelete}
-							onInvalid={this.handleInvalid.bind(this)}
-							formData={listItem} />
+							formData={listItem}
+							onInvalid={this.handleInvalid.bind(this)}/>
 						<RemoveButton
 							{...this.props}
 							attr={attr.concat(index)} />
@@ -45,9 +61,12 @@ class MultiForm extends React.Component {
 
 		return (
 			<div className="hire-multi-form">
-				<AddForm
+				<button onClick={this.handleAdd.bind(this)}>
+					Add new
+				</button>
+				{/*<AddForm
 					{...this.props}
-					attr={attr.concat(this.props.values.length)}/>
+					attr={attr.concat(this.props.values.length)}/>*/}
 				{formList}
 			</div>
 		);

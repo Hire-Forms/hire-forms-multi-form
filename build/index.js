@@ -53,143 +53,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = _dereq_("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var AddButton = (function (_React$Component) {
-	_inherits(AddButton, _React$Component);
-
-	function AddButton() {
-		_classCallCheck(this, AddButton);
-
-		_get(Object.getPrototypeOf(AddButton.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(AddButton, [{
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"button",
-				{
-					className: "add",
-					onClick: this.props.onAdd,
-					title: "Add" },
-				this.props.addButtonValue
-			);
-		}
-	}]);
-
-	return AddButton;
-})(_react2["default"].Component);
-
-exports["default"] = AddButton;
-module.exports = exports["default"];
-
-},{"react":"react"}],3:[function(_dereq_,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = _dereq_("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _hireFormsUtils = _dereq_("hire-forms-utils");
-
-var _addButton = _dereq_("./add-button");
-
-var _addButton2 = _interopRequireDefault(_addButton);
-
-var AddForm = (function (_React$Component) {
-	_inherits(AddForm, _React$Component);
-
-	function AddForm(props) {
-		_classCallCheck(this, AddForm);
-
-		_get(Object.getPrototypeOf(AddForm.prototype), "constructor", this).call(this, props);
-
-		this.state = {
-			formData: props.model
-		};
-	}
-
-	_createClass(AddForm, [{
-		key: "handleChange",
-		value: function handleChange(key, value) {
-			var nextFormValue = _extends({}, this.state.formData, _defineProperty({}, key, value));
-
-			this.setState(_extends({}, this.state, {
-				formData: nextFormValue
-			}));
-		}
-	}, {
-		key: "handleAdd",
-		value: function handleAdd() {
-			this.props.onChange(this.props.attr, this.state.formData);
-
-			this.resetForm();
-		}
-	}, {
-		key: "resetForm",
-		value: function resetForm() {
-			this.setState({
-				formData: this.props.model
-			});
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			var addButton = _react2["default"].createElement(_addButton2["default"], _extends({
-				onAdd: this.handleAdd.bind(this)
-			}, this.props));
-
-			return _react2["default"].createElement(this.props.component, _extends({}, this.props, {
-				addButton: addButton,
-				formData: this.state.formData,
-				onChange: this.handleChange.bind(this) }));
-		}
-	}]);
-
-	return AddForm;
-})(_react2["default"].Component);
-
-exports["default"] = AddForm;
-module.exports = exports["default"];
-
-},{"./add-button":2,"hire-forms-utils":6,"react":"react"}],4:[function(_dereq_,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -205,18 +68,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _react = _dereq_("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _classnames = _dereq_("classnames");
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 var _hireFormsUtils = _dereq_("hire-forms-utils");
 
 var _hireFormsPropTypes = _dereq_("hire-forms-prop-types");
 
-var _addForm = _dereq_("./add-form");
-
-var _addForm2 = _interopRequireDefault(_addForm);
-
 var _removeButton = _dereq_("./remove-button");
 
 var _removeButton2 = _interopRequireDefault(_removeButton);
+
+// <DateAndLocalityForm
+// 	attr={"origin"}
+// 	onChange={this.props.handleChange}
+// 	onInvalid={this.props.handleInvalid}
+// 	formData={model.origin} />
 
 //TODO fix propType for this.props.component
 
@@ -245,6 +114,13 @@ var MultiForm = (function (_React$Component) {
 			}
 		}
 	}, {
+		key: "handleAdd",
+		value: function handleAdd() {
+			var values = (0, _hireFormsUtils.castArray)(this.props.model).concat(this.props.values);
+			// let key = castArray(this.props.attr).concat(this.props.values.length);
+			this.props.onChange(this.props.attr, values);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var _this = this;
@@ -257,13 +133,12 @@ var MultiForm = (function (_React$Component) {
 				this.props.values.map(function (listItem, index) {
 					return _react2["default"].createElement(
 						"li",
-						{ className: "form", key: index },
+						{ className: (0, _classnames2["default"])("form", { "new": listItem === _this.props.model }),
+							key: index },
 						_react2["default"].createElement(_this.props.component, _extends({}, _this.props, {
 							attr: attr.concat(index),
-							onChange: _this.props.onChange,
-							onDelete: _this.props.onDelete,
-							onInvalid: _this.handleInvalid.bind(_this),
-							formData: listItem })),
+							formData: listItem,
+							onInvalid: _this.handleInvalid.bind(_this) })),
 						_react2["default"].createElement(_removeButton2["default"], _extends({}, _this.props, {
 							attr: attr.concat(index) }))
 					);
@@ -273,8 +148,11 @@ var MultiForm = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "hire-multi-form" },
-				_react2["default"].createElement(_addForm2["default"], _extends({}, this.props, {
-					attr: attr.concat(this.props.values.length) })),
+				_react2["default"].createElement(
+					"button",
+					{ onClick: this.handleAdd.bind(this) },
+					"Add new"
+				),
 				formList
 			);
 		}
@@ -303,8 +181,11 @@ MultiForm.propTypes = {
 
 exports["default"] = MultiForm;
 module.exports = exports["default"];
+/*<AddForm
+{...this.props}
+attr={attr.concat(this.props.values.length)}/>*/
 
-},{"./add-form":3,"./remove-button":5,"hire-forms-prop-types":1,"hire-forms-utils":6,"react":"react"}],5:[function(_dereq_,module,exports){
+},{"./remove-button":3,"classnames":"classnames","hire-forms-prop-types":1,"hire-forms-utils":4,"react":"react"}],3:[function(_dereq_,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -358,7 +239,7 @@ var RemoveButton = (function (_React$Component) {
 exports["default"] = RemoveButton;
 module.exports = exports["default"];
 
-},{"react":"react"}],6:[function(_dereq_,module,exports){
+},{"react":"react"}],4:[function(_dereq_,module,exports){
 
 /*
  * @param {Array} list
@@ -438,5 +319,5 @@ function castKeyValueArray(list) {
   return list.map(castKeyValue);
 }
 
-},{}]},{},[4])(4)
+},{}]},{},[2])(2)
 });
