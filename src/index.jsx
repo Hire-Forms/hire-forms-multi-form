@@ -81,7 +81,10 @@ MultiForm.defaultProps = {
 
 MultiForm.propTypes = {
 	addButtonValue: React.PropTypes.string,
-	attr: stringOrArrayOfString,
+	attr: React.PropTypes.oneOfType([
+		React.PropTypes.string,
+		React.PropTypes.array
+	]),
 	component: React.PropTypes.func.isRequired,
 	model: React.PropTypes.object.isRequired,
 	onChange: React.PropTypes.func.isRequired,

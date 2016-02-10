@@ -254,7 +254,7 @@ MultiForm.defaultProps = {
 
 MultiForm.propTypes = {
 	addButtonValue: _react2["default"].PropTypes.string,
-	attr: _hireFormsPropTypes.stringOrArrayOfString,
+	attr: _react2["default"].PropTypes.oneOfType([_react2["default"].PropTypes.string, _react2["default"].PropTypes.array]),
 	component: _react2["default"].PropTypes.func.isRequired,
 	model: _react2["default"].PropTypes.object.isRequired,
 	onChange: _react2["default"].PropTypes.func.isRequired,
