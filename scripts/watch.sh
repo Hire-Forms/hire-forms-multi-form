@@ -4,8 +4,8 @@ node_modules/.bin/watchify src/index.jsx \
 	--detect-globals false \
 	--extension=.jsx \
 	--external classnames \
-	--external immutable \
 	--external react \
+	--external react-dom \
 	--outfile 'derequire > build/index.js' \
 	--standalone HireFormsMultiForm \
 	--transform [ babelify --plugins object-assign ] \

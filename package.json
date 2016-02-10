@@ -19,8 +19,8 @@
   "homepage": "https://github.com/Hire-Forms/hire-forms-multi-form",
   "peerDependencies": {
     "classnames": "^2.1.2",
-    "react": "^0.13.3",
-    "immutable": "^3.7.3"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "babel-core": "^5.8.23",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "classnames": "^2.1.5",
-    "hire-forms-prop-types": "^1.0.1",
+    "hire-forms-prop-types": "https://github.com/Hire-Forms/hire-forms-prop-types.git#react-0.14",
     "hire-forms-utils": "^1.0.1",
     "lodash.get": "^3.7.0"
   }
